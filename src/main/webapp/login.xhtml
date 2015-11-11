@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h:form>
+            <h:outputText value="Uživatelské jméno:" />
+            <h:inputText id="username" value="#{LoginBean.user}" ></h:inputText>
+            <h:message for="username" />
+            <br /><br />
+
+            <h:outputText value="Heslo:" />
+            <h:inputSecret id="password" value="#{LoginBean.pswd}"></h:inputSecret>
+            <h:message for="password" />
+            <br /><br />
+
+            <h:commandButton action="#{LoginBean.validateUsernamePassword}" value="Login"></h:commandButton>
+        </h:form>
+    </body>
+</html>

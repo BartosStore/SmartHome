@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Template ttl</title>
+        <h:outputStylesheet name="css/style.css"></h:outputStylesheet>
+    </h:head>
+
+    <h:body>
+        <div id="tmpl_header">
+            <div id="logo">
+
+            </div>
+            <div id="menu-box">
+                <ul id="menu">
+                    <li><a href="index.xhtml" id="first">Home</a></li>
+                    <li><a href="#">Graph</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="tmpl_content">
+            <h1><ui:insert name="header"></ui:insert></h1>
+            <ui:insert name="content"></ui:insert>
+        </div>
+
+        <div id="tmpl_footer">Template footer</div>
+    </h:body>
+
+</html>
