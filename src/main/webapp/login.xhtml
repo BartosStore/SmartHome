@@ -15,16 +15,16 @@ and open the template in the editor.
     <body>
         <h:form>
             <h:outputText value="Uživatelské jméno:" />
-            <h:inputText id="username" value="#{LoginBean.user}" ></h:inputText>
+            <h:inputText id="username" value="#{loginBean.user}" ></h:inputText>
             <h:message for="username" />
             <br /><br />
 
             <h:outputText value="Heslo:" />
-            <h:inputSecret id="password" value="#{LoginBean.pswd}"></h:inputSecret>
+            <h:inputSecret id="password" value="#{loginBean.pswd}"></h:inputSecret>
             <h:message for="password" />
             <br /><br />
 
-            <h:commandButton action="#{LoginBean.validateUsernamePassword}" value="Login"></h:commandButton>
+            <h:commandButton action="#{loginBean.validateUsernamePassword}" value="Login"></h:commandButton>
         </h:form>
     </body>
 </html>
