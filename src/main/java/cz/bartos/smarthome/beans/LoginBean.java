@@ -5,27 +5,41 @@
  */
 package cz.bartos.smarthome.beans;
 
-import cz.bartos.smarthome.dao.LoginDao;
-import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
+import cz.bartos.smarthome.dao.UserDao;
+import cz.bartos.smarthome.domain.User;
+
 import javax.faces.application.FacesMessage;
+import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
+import java.io.Serializable;
 
 /**
- *
  * @author Míra
  */
 @Named
-@SessionScoped
+@ViewScoped
 public class LoginBean implements Serializable {
 
-    private static final long serialVersionUID = 1094801825228386363L;
-
+    @Inject
+    UserSession userSession;
     private String user;
-    private String pswd;
-    private String mssg;
+    private String password;
+    @Inject
+    private UserDao userDao;
+
+    public String authenticateUser() {
+        User databaseUser = userDao.findByLogin(user, password);
+        if (databaseUser == null) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed", "Login failed");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            return null;
+        }
+        userSession.setUser(databaseUser);
+
+        return "index.xhtml";
+    }
 
     public String getUser() {
         return user;
@@ -35,45 +49,28 @@ public class LoginBean implements Serializable {
         this.user = user;
     }
 
-    public String getPswd() {
-        return pswd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPswd(String pswd) {
-        this.pswd = pswd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getMssg() {
-        return mssg;
+    public UserSession getUserSession() {
+        return userSession;
     }
 
-    public void setMssg(String mssg) {
-        this.mssg = mssg;
+    public void setUserSession(UserSession userSession) {
+        this.userSession = userSession;
     }
 
-    public String validateUsernamePassword() {
-        boolean valid = LoginDao.validate(user, pswd);
-        if (valid) {
-            HttpSession session = SessionBean.getSession();
-            session.setAttribute("username", user);
-            return "admin";
-        } else {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(
-                            FacesMessage.SEVERITY_WARN,
-                            "Špatně zadané jméno nebo heslo!",
-                            "Prosím, vložte správné údaje."
-                    )
-            );
-            return "login";
-        }
+    public UserDao getUserDao() {
+        return userDao;
     }
 
-    public String logout() {
-        HttpSession session = SessionBean.getSession();
-        session.invalidate();
-        return "login";
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 
 }

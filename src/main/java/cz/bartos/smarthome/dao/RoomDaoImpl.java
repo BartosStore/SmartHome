@@ -18,7 +18,7 @@ import javax.persistence.PersistenceContext;
 public class RoomDaoImpl implements RoomDao {
 
     @PersistenceContext
-    EntityManager manager;
+    private EntityManager manager;
 
     @Override
     public Room merge(Room room) {
