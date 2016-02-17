@@ -33,7 +33,7 @@ public class LoginBean implements Serializable {
         User databaseUser = userDao.findByLogin(user, password);
         if (databaseUser == null) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed", "Login failed");
-            FacesContext.getCurrentInstance().addMessage(null, message);
+            FacesContext.getCurrentInstance().addMessage("loginForm:username", message);
             return null;
         }
         userSession.setUser(databaseUser);

@@ -5,24 +5,146 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Test</title>
+    </h:head>
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+        <!-- MIBA : INFOBAR -->
+        <b:navBar brand="Brand" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:navLink value="Link" href="#"></b:navLink>
+                <b:navLink value="Link" href="#"></b:navLink>
+                <b:dropMenu value="Dropdown">
+                    <b:navLink value="Action" href="#"></b:navLink>
+                    <b:navLink value="Another action" href="#"></b:navLink>
+                    <b:navLink value="Something else here" href="#"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <b:navLink header="Nav header"></b:navLink>
+                    <b:navLink value="Separated link" href="#"></b:navLink>
+                    <b:navLink value="One more separated link" href="#"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+            <h:outputText value="Logged!" rendered="#{userSession.loggedIn}" style="color: #e9e9e9" />
+            <h:outputText value="#{userSession.user.name}" rendered="#{userSession.loggedIn}" style="color: #e9e9e9" />
+            <h:form styleClass="navbar-form navbar-right">
+                <div class="form-group">
 
-    <ui:composition template="WEB-INF/template.xhtml">
-
-        <ui:define name="header">SmartHome</ui:define>
-
-        <ui:define name="content">
-            <h:outputText value="Logged!" rendered="#{userSession.loggedIn}" ></h:outputText>
-
-            <h:form>
-                <h:outputText value="Název místnosti:" />
-                <h:outputText value="#{homeBean.room}" />
+                    <b:inputText placeholder="Email" fieldSize="sm"/>
+                    <!--input type="text" class="form-control" placeholder="Search"/-->
+                </div>
+                <div class="form-group">
+                    <b:inputText placeholder="Password" fieldSize="sm"/>
+                </div>
+                #{' '}
+                <b:commandButton action="a" value="Sign in" look="success" icon="chevron-right" iconAlign="right"/>
             </h:form>
-        </ui:define>
+        </b:navBar>
 
-    </ui:composition>
+        <!-- MIBA : MAINBOARD -->
+        <b:jumbotron>
+            <b:container>
+                <b:row>
+                    <b:column offset="2" span="6">
+                        <h:graphicImage url="http://www.radeton.cz/ckfinder/userfiles/images/pics/Aktuality/23.png" />
+                        <p><b>23</b>°C</p>
+                        <p>Teplota uvnitr domu.
+                        </p>
+                    </b:column>
+                    <b:column span="2">
+                        <p>Vsechny senzory jsou funkcni.</p>
+                        <h:outputText value="#{homeBean.room}" />
+                    </b:column>
+                </b:row>
+            </b:container>
+        </b:jumbotron>
+        <hr/>
+        <b:container>
+            <b:row>
+                <!-- MIBA : SQUARE MENU -->
+                <b:column offset="2" span="6">
+                    <b:row>
+                        <b:column span="4">
+                            <h:graphicImage url="https://nowthisiswhatiwouldcallmusic.files.wordpress.com/2015/06/1.png" height="120px" width="120px" />
+                        </b:column>
+                        <b:column span="4">
+                            <h:graphicImage url="http://www.astrogle.com/images/2014/09/number-24.png" height="120px" width="120px" />
+                        </b:column>
+                        <b:column span="4">
+                            <h:graphicImage url="http://www.clker.com/cliparts/m/e/j/n/R/V/number-3-in-light-blue-rounded-square-md.png" height="120px" width="120px" />
+                        </b:column>
+                    </b:row>
+                    <hr />
+                    <b:row>
+                        <b:column span="4">
+                            <h:graphicImage url="https://nowthisiswhatiwouldcallmusic.files.wordpress.com/2015/06/1.png" height="120px" width="120px" />
+                        </b:column>
+                        <b:column span="4">
+                            <h:graphicImage url="http://www.astrogle.com/images/2014/09/number-24.png" height="120px" width="120px" />
+                        </b:column>
+                        <b:column span="4">
+                            <h:graphicImage url="http://www.clker.com/cliparts/m/e/j/n/R/V/number-3-in-light-blue-rounded-square-md.png" height="120px" width="120px" />
+                        </b:column>
+                    </b:row>
+                    <hr />
+                    <b:row>
+                        <b:column span="4">
+                            <h:graphicImage url="https://nowthisiswhatiwouldcallmusic.files.wordpress.com/2015/06/1.png" height="120px" width="120px" />
+                        </b:column>
+                        <b:column span="4">
+                            <h:graphicImage url="http://www.astrogle.com/images/2014/09/number-24.png" height="120px" width="120px" />
+                        </b:column>
+                        <b:column span="4">
+                            <h:graphicImage url="http://www.clker.com/cliparts/m/e/j/n/R/V/number-3-in-light-blue-rounded-square-md.png" height="120px" width="120px" />
+                        </b:column>
+                    </b:row>
+                </b:column>
 
+                <!-- MIBA : USER -->
+                <b:column span="2">
+                    <b:row>
+                        <b:column span="4">
+                            <h:graphicImage url="http://d2av97idjaqjyo.cloudfront.net/wp-content/uploads/files/Will%20(Avatar).jpg" height="120px" width="120px" />
+                        </b:column>
+                    </b:row>
+                    <hr />
+                    <b:row>
+                        <b:column span="4">
+                            <h2><h:outputText value="#{userSession.user.name}" rendered="#{userSession.loggedIn}" ></h:outputText></h2>
+                        </b:column>
+                    </b:row>
+                    <hr />
+                    <b:row>
+                        <b:column span="4">
+                            <p>==ROLE==</p>
+                            <p>Profil</p>
+                            <p>Konfigurace</p>
+                        </b:column>
+                    </b:row>
+                    <p><b:button outcome="" value="View details »"/></p>
+                </b:column>
+            </b:row>
+
+            <!-- MIBA : PLAIN TEXT -->
+            <b:row>
+                <b:column span="8" offset="2">
+                    <h2>Lorem ipsum dolor sit amet</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quisque porta. Proin pede metus, vulputate nec, fermentum fringilla, vehicula vitae, justo. Mauris tincidunt sem sed arcu. Pellentesque pretium lectus id turpis. Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Nulla accumsan, elit sit amet varius semper, nulla mauris mollis quam, tempor suscipit diam nulla vel leo. Phasellus et lorem id felis nonummy placerat. Morbi scelerisque luctus velit. Etiam bibendum elit eget erat. Mauris metus. Quisque tincidunt scelerisque libero. Fusce aliquam vestibulum ipsum. Nullam sapien sem, ornare ac, nonummy non, lobortis a enim. Nulla pulvinar eleifend sem. Mauris tincidunt sem sed arcu. Etiam sapien elit, consequat eget, tristique non, venenatis quis, ante. Curabitur bibendum justo non orci. Nulla est. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
+                    </p>
+                    <p>
+                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec iaculis gravida nulla. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Integer tempor. Aliquam ante. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Maecenas sollicitudin. Donec quis nibh at felis congue commodo. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Maecenas ipsum velit, consectetuer eu lobortis ut, dictum at dui. Duis risus. Fusce tellus. In dapibus augue non sapien. Aliquam id dolor.
+                    </p>
+                </b:column>
+            </b:row>
+
+            <footer>
+                <p>© Company 2014</p>
+            </footer>
+        </b:container>
+
+    </h:body>
 </html>
