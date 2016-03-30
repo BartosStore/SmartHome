@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Vytápění</title>
+    </h:head>
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+        <!-- MIBA : INFOBAR -->
+        <b:navBar brand="Brand" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:navLink value="Domů" href="index.xhtml"></b:navLink>
+                <b:navLink value="Login" href="login.xhtml"></b:navLink>
+                <b:dropMenu value="Dropdown">
+                    <b:navLink value="Action" href="#"></b:navLink>
+                    <b:navLink value="Another action" href="#"></b:navLink>
+                    <b:navLink value="Something else here" href="#"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <b:navLink header="Nav header"></b:navLink>
+                    <b:navLink value="Separated link" href="#"></b:navLink>
+                    <b:navLink value="One more separated link" href="#"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+
+            <h:form styleClass="navbar-form navbar-right">
+                <h:outputText value="Logged!" rendered="#{userSession.loggedIn}" style="color: #e9e9e9" />
+                <h:outputText value="#{userSession.user.name}" rendered="#{userSession.loggedIn}" style="color: #e9e9e9" />
+            </h:form>
+        </b:navBar>
+
+
+        <b:well>
+            <h3>Well Header</h3>
+            Well, that's the content of the.
+        </b:well>
+        <b:container>
+            <b:row>
+                <b:column offset="3" span="6">
+                    <b:panel title="Vytápění" look="primary">
+                        <h3>Obývací pokoj</h3>
+                        Nebyla nalezena hodnota teploty.
+                    </b:panel>
+
+                    <b:panel title="Test beany" look="primary">
+                        <h3>Obývací pokoj</h3>
+                        <h:form>
+                            <p>Teplota:</p>
+                            <h:outputText value="#{heatBean.heatTemp}" style="color: #ff0000" />
+                            <p>Mistnost:</p>
+                            <h:outputText value="#{heatBean.heatRoom}" style="color: #ff0000" />
+                            <p>Rest api response:</p>
+                            <h:outputText value="#{heatBean.restApiResponse}" style="color: #ff0000" />
+                        </h:form>
+                    </b:panel>
+                </b:column>
+            </b:row>
+        </b:container>
+    </h:body>
+</html>

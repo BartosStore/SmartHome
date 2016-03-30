@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Osvětlení</title>
+    </h:head>
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+        <!-- MIBA : INFOBAR -->
+        <b:navBar brand="Brand" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:navLink value="Domů" href="index.xhtml"></b:navLink>
+                <b:navLink value="Login" href="login.xhtml"></b:navLink>
+                <b:dropMenu value="Dropdown">
+                    <b:navLink value="Action" href="#"></b:navLink>
+                    <b:navLink value="Another action" href="#"></b:navLink>
+                    <b:navLink value="Something else here" href="#"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <b:navLink header="Nav header"></b:navLink>
+                    <b:navLink value="Separated link" href="#"></b:navLink>
+                    <b:navLink value="One more separated link" href="#"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+
+            <h:form styleClass="navbar-form navbar-right">
+                <h:outputText value="Logged!" rendered="#{userSession.loggedIn}" style="color: #e9e9e9" />
+                <h:outputText value="#{userSession.user.name}" rendered="#{userSession.loggedIn}" style="color: #e9e9e9" />
+            </h:form>
+        </b:navBar>
+
+
+        <b:well>
+            <h3>Well Header</h3>
+            Well, that's the content of the.
+        </b:well>
+        <h:form>
+            <p:growl id="msgs" showDetail="true" />
+
+            <p:fieldset legend="Basic" style="margin-bottom:20px">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:graphicImage url="#{resource['img/heating_02.png']}" height="100px" width="100px" />
+                    <h:outputText
+                        value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+                        His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+                        Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,
+                        but given to ruthless violence whenever anything stands against the good of the family." />
+                </h:panelGrid>
+            </p:fieldset>
+
+            <p:fieldset legend="Toggleable" toggleable="true" toggleSpeed="500">
+                <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs" />
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:graphicImage url="#{resource['img/heating_02.png']}" height="100px" width="100px" />
+                    <h:outputText value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream.
+                                  In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy,
+                                  killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows."></h:outputText>
+                </h:panelGrid>
+            </p:fieldset>
+
+            <b:panel title="Test beany" look="primary">
+                <h3>Obývací pokoj</h3>
+                <p>Teplota:</p>
+                <h:outputText value="#{lightBean.lightSwitcher}" style="color: #e9e9e9" />
+                <p>Mistnost:</p>
+                <h:outputText value="#{lightBean.selectedRoom}" style="color: #e9e9e9" />
+            </b:panel>
+        </h:form>
+    </h:body>
+</html>

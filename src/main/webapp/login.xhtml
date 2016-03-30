@@ -44,7 +44,7 @@ and open the template in the editor.
                             </b:row>
                             <b:row>
                                 <b:column span="4" offset="2">
-                                    <h:commandButton action="#{loginBean.authenticateUser}" value="Login"></h:commandButton>
+                                    <b:commandButton action="#{loginBean.authenticateUser}" value="Sign in" look="success" icon="chevron-right" iconAlign="right"/>
                                 </b:column>
                                 <b:column span="4">
                                     <b:commandButton value="Zapomenuté heslo" onclick="ajax:loginBean.forgotPassword()" update="@form"
