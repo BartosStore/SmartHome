@@ -9,7 +9,7 @@ package service;
  *
  * @author Míra
  */
-public interface RestClient {
+public interface RestService {
 
     public String getIP();
 

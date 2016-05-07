@@ -32,4 +32,17 @@ public class UserDaoImpl implements UserDao {
             return userQuery.getSingleResult();
         }
     }
+
+    @Override
+    public List<User> findAll() {
+        Query query = entityManager.createNamedQuery("findAllUsers");
+
+        return query.getResultList();
+    }
+
+    @Override
+    public void addUser(User user) {
+        entityManager.persist(user);
+    }
+
 }

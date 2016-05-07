@@ -1,0 +1,7 @@
+login.xhtml: admin, user, child, guest
+index.xhtml: admin, user, child, guest
+ifttt_rules: admin
+users_overview: admin
+user_settings: admin, user
+light.xhtml: admin, user, child, guest
+heating.xhtml: admin, user

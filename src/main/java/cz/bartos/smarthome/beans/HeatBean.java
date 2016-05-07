@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import service.RestClient;
+import service.RestService;
 
 /**
  *
@@ -25,7 +25,7 @@ public class HeatBean implements Serializable {
     private String restApiResponse;
 
     @Inject
-    private RestClient restClient;
+    private RestService restClient;
 
     @PostConstruct
     public void init() {
@@ -61,11 +61,11 @@ public class HeatBean implements Serializable {
         this.restApiResponse = restApiResponse;
     }
 
-    public RestClient getRestClient() {
+    public RestService getRestClient() {
         return restClient;
     }
 
-    public void setRestClient(RestClient restClient) {
+    public void setRestClient(RestService restClient) {
         this.restClient = restClient;
     }
 

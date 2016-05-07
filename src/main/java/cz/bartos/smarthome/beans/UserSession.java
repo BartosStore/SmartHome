@@ -20,10 +20,11 @@ public class UserSession implements Serializable {
         return user;
     }
 
-    public boolean hasRole(Role role) {
-        return user != null && user.getRole().equals(role);
-    }
-
+    /*
+     public boolean hasRole(Role role) {
+     return user != null && user.getRole().equals(role);
+     }
+     */
     public void setUser(User user) {
         this.user = user;
     }

@@ -36,12 +36,12 @@ public class AuthorizationBean implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public boolean hasAccess(User user, String requestURI) {
-        Role role = accessMap.get(requestURI);
-        return role != null && user.getRole() == role;
-    }
-
+    /*
+     public boolean hasAccess(User user, String requestURI) {
+     Role role = accessMap.get(requestURI);
+     return role != null && user.getRole() == role;
+     }
+     */
 }
