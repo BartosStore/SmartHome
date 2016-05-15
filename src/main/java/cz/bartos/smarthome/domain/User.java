@@ -18,7 +18,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @NotNull
     @Size(min = 1, max = 255)
     private String name;
