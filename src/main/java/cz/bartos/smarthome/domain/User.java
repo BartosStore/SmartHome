@@ -1,6 +1,7 @@
 package cz.bartos.smarthome.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,7 +26,11 @@ public class User implements Serializable {
     private String email;
     private String surname;
     private String password;
-    private Role role;
+    @ManyToMany
+    @JoinTable(name = "jt_user_role",
+            joinColumns = @JoinColumn(name =  "user_fk"),
+            inverseJoinColumns = @JoinColumn(name = "role_fk"))
+    private List<Role> roles;
 
     public long getId() {
         return id;
@@ -35,12 +40,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public Role getRole() {
-        return role;
+    public List<Role> getRole() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRole(List<Role> roles) {
+        this.roles = roles;
     }
 
     public String getName() {
