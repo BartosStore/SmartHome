@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import service.RestService;
+import cz.bartos.smarthome.service.RestService;
 
 /**
  *

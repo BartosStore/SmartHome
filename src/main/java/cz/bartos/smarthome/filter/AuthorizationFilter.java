@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package filter;
+package cz.bartos.smarthome.filter;
 
 import cz.bartos.smarthome.beans.UserSession;
 

@@ -46,6 +46,7 @@ and open the template in the editor.
                                 <b:column span="4" offset="2">
                                     <b:commandButton action="#{loginBean.authenticateUser}" value="Sign in" look="success" icon="chevron-right" iconAlign="right"/>
                                 </b:column>
+                                
                                 <b:column span="4">
                                     <b:commandButton value="Zapomenuté heslo" onclick="ajax:loginBean.forgotPassword()" update="@form"
                                                      look="danger" style="width:100%" />
