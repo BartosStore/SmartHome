@@ -31,7 +31,9 @@ public class RoomValues {
         state.setHumi("58.5");
         
         return Response
-                .ok(state, MediaType.APPLICATION_JSON).header("Access-Control-Allow-Origin", "*").build();
+                .ok(state, MediaType.APPLICATION_JSON).build();
+        
+        //.ok(state, MediaType.APPLICATION_JSON).header("Access-Control-Allow-Origin", "*").build();
     }
     
 }

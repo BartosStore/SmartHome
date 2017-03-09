@@ -40,7 +40,9 @@ public class Rules {
         //return Response.ok(rules.toString()).build();
         //return Response.ok(rules, MediaType.APPLICATION_JSON).build();
         return Response
-                .ok(rules, MediaType.APPLICATION_JSON).header("Access-Control-Allow-Origin", "*").build();
+                .ok(rules, MediaType.APPLICATION_JSON).build();
+        
+        //.ok(rules, MediaType.APPLICATION_JSON).header("Access-Control-Allow-Origin", "*").build();
     }
     
 }

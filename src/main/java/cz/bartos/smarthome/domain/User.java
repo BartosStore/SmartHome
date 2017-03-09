@@ -1,6 +1,7 @@
 package cz.bartos.smarthome.domain;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,6 +27,8 @@ public class User implements Serializable {
     private String email;
     private String surname;
     private String password;
+    private String token;
+    private Timestamp lastReading;
     @ManyToMany
     @JoinTable(name = "jt_user_role",
             joinColumns = @JoinColumn(name =  "user_fk"),
@@ -79,4 +82,22 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Timestamp getLastReading() {
+        return lastReading;
+    }
+
+    public void setLastReading(Timestamp lastReading) {
+        this.lastReading = lastReading;
+    }
+    
+    
 }
