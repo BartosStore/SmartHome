@@ -50,7 +50,7 @@ public class Registrate {
         authenticator.setName(input.name);
         authenticator.setPass("password");
         authenticator.setToken(uuid);
-        authenticator.setTimestamp("timestamp");
+        authenticator.setTimestamp(timestamp);
 
         return Response.ok(authenticator, MediaType.APPLICATION_JSON).build();        
     }

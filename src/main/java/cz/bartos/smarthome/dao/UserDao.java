@@ -9,9 +9,13 @@ import java.util.List;
 public interface UserDao {
 
     public User findByLogin(String login, String password);
+    
+    public User findByToken(String token);
 
     public List<User> findAll();
 
     public void addUser(User user);
+    
+    public void update(User user);
 
 }

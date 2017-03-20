@@ -45,4 +45,24 @@ public class UserDaoImpl implements UserDao {
         entityManager.persist(user);
     }
 
+    @Override
+    public void update(User user) {
+        entityManager.merge(user);
+    }    
+
+    @Override
+    public User findByToken(String token) {
+        TypedQuery<User> tokenQuery = entityManager.createNamedQuery("findUserByTokenQuery", User.class);
+        tokenQuery.setParameter("token", token);
+        
+        List results = tokenQuery.getResultList();
+        
+        if (results.isEmpty()) {
+            return null;
+        } else {
+            return tokenQuery.getSingleResult();
+        }
+    }
+
+
 }

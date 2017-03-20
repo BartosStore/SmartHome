@@ -10,7 +10,6 @@ import cz.bartos.smarthome.domain.Authenticator;
 import cz.bartos.smarthome.domain.JaxBean;
 import cz.bartos.smarthome.domain.User;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.UUID;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -33,43 +32,31 @@ public class Login {
     UserDao userDao;
     
     private Authenticator authenticator;
+    private User user;
     
     @POST
-    //public Response post() {                
-    //public Response post(@FormParam("name") String name) {
     public Response post(final JaxBean input) {
-        System.out.println(
-                "login: " + input.name
-                + "\npass: " + input.pass
-            );
-        
-        /*
-        String uuid = UUID.randomUUID().toString().replace("-", "");
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        */
-        
-        //authenticator.setTimestamp(String.valueOf(timestamp.getTime()));
-        
-        User user = new User();
-        user = userDao.findByLogin(input.name, input.pass);
-        //user = userDao.findByLogin("mira", "mypass");
+        //System.out.println("login: " + input.name + "\npass: " + input.pass);
         authenticator = new Authenticator();
         
-        if (!user.getEmail().equals("")) {
-            System.out.println(
-                "login: " + user.getEmail()
-                + "\npass: " + user.getPassword()
-            );
+        user = userDao.findByLogin(input.name, input.pass);
+        
+        if (user != null) {
+            String uuid = UUID.randomUUID().toString().replace("-", "");
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            System.out.println(timestamp);
+            
+            user.setToken(uuid);
+            user.setLastReading(timestamp);
+            userDao.update(user);
             
             authenticator.setName(user.getEmail());
             authenticator.setPass(user.getPassword());
             authenticator.setToken(user.getToken());
+            authenticator.setTimestamp(timestamp);
         } else {
-            System.out.println("User nenalezen.");
             authenticator.setName("ERROR");
         }
-        
-        System.out.println(UUID.randomUUID().toString().replace("-", ""));
         
         return Response.ok(authenticator, MediaType.APPLICATION_JSON).build();
     }
