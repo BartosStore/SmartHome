@@ -13,7 +13,8 @@ import javax.validation.constraints.Size;
 @NamedQueries(
         {
             @NamedQuery(name = "findUserByLoginQuery", query = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password"),
-            @NamedQuery(name = "findUserByTokenQuery", query = "SELECT u FROM User u WHERE u.token = :token")
+            @NamedQuery(name = "findUserByTokenQuery", query = "SELECT u FROM User u WHERE u.token = :token"),
+            @NamedQuery(name = "findAll", query = "SELECT u FROM User u")
         }
 )
 @Entity
@@ -30,11 +31,20 @@ public class User implements Serializable {
     private String password;
     private String token;
     private Timestamp lastReading;
+    
+    @OneToMany(cascade = CascadeType.MERGE)
+    private List<UserComponent> userComponents;
+    
+    @OneToMany(cascade = CascadeType.MERGE)
+    private List<UserScreen> userScreens;
+    
+    /*
     @ManyToMany
     @JoinTable(name = "jt_user_role",
             joinColumns = @JoinColumn(name =  "user_fk"),
             inverseJoinColumns = @JoinColumn(name = "role_fk"))
     private List<Role> roles;
+    */
 
     public long getId() {
         return id;
@@ -44,12 +54,30 @@ public class User implements Serializable {
         this.id = id;
     }
 
+    /*
     public List<Role> getRole() {
         return roles;
     }
 
     public void setRole(List<Role> roles) {
         this.roles = roles;
+    }
+    */
+
+    public List<UserComponent> getUserComponents() {
+        return userComponents;
+    }
+
+    public void setUserComponents(List<UserComponent> userComponents) {
+        this.userComponents = userComponents;
+    }
+
+    public List<UserScreen> getUserScreens() {
+        return userScreens;
+    }
+
+    public void setUserScreens(List<UserScreen> userScreens) {
+        this.userScreens = userScreens;
     }
 
     public String getName() {

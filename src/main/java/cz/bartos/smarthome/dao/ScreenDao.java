@@ -5,14 +5,17 @@
  */
 package cz.bartos.smarthome.dao;
 
-import cz.bartos.smarthome.domain.Role;
+import cz.bartos.smarthome.domain.Screen;
+import java.util.List;
 
 /**
  *
- * @author Míra
+ * @author mirek
  */
-public interface RoleDao {
-
-    public Role findById(Long id);
-
+public interface ScreenDao {
+    
+    public Screen findByUrl(String url);
+    
+    public List<Screen> findAll();
+    
 }

@@ -6,7 +6,6 @@
 package cz.bartos.smarthome.beans;
 
 import cz.bartos.smarthome.dao.UserDao;
-import cz.bartos.smarthome.domain.Role;
 import cz.bartos.smarthome.domain.User;
 import cz.bartos.smarthome.producer.UserProducer;
 import java.io.Serializable;
@@ -32,16 +31,11 @@ public class AddUserBean implements Serializable {
     private List<User> users;
     private User newUser;
     private UserProducer userProducer;
-    //private List<Role> userRoles = new ArrayList<>();
 
     @PostConstruct
     public void init() {
         //zde bude potreba pridat roli
         newUser = new User();
-        /*
-         Role userRole = new Role();
-         userRoles.add(userRole);
-         */
     }
 
     /**
@@ -72,13 +66,5 @@ public class AddUserBean implements Serializable {
     public void setNewUser(User newUser) {
         this.newUser = newUser;
     }
-    /*
-     public List<Role> getUserRoles() {
-     return userRoles;
-     }
-
-     public void setUserRoles(List<Role> userRoles) {
-     this.userRoles = userRoles;
-     }
-     */
+    
 }

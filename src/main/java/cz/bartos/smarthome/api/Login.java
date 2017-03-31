@@ -36,26 +36,29 @@ public class Login {
     
     @POST
     public Response post(final JaxBean input) {
-        //System.out.println("login: " + input.name + "\npass: " + input.pass);
-        authenticator = new Authenticator();
+        System.out.println("login: " + input.name + "\npass: " + input.pass);
         
+        authenticator = new Authenticator();
         user = userDao.findByLogin(input.name, input.pass);
         
         if (user != null) {
             String uuid = UUID.randomUUID().toString().replace("-", "");
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            System.out.println(timestamp);
+            System.out.println("OK: " + uuid + "_" + timestamp);
             
             user.setToken(uuid);
             user.setLastReading(timestamp);
             userDao.update(user);
             
+            authenticator.setStatus("OK");
             authenticator.setName(user.getEmail());
             authenticator.setPass(user.getPassword());
             authenticator.setToken(user.getToken());
-            authenticator.setTimestamp(timestamp);
+            authenticator.setTimestamp(user.getLastReading());
         } else {
-            authenticator.setName("ERROR");
+            System.out.println("KO");
+            authenticator.setStatus("KO");
+            authenticator.setSnackbar("Údajům neodpovídá žádný uživatel.");
         }
         
         return Response.ok(authenticator, MediaType.APPLICATION_JSON).build();

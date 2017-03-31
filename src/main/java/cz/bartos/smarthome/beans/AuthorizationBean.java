@@ -1,6 +1,5 @@
 package cz.bartos.smarthome.beans;
 
-import cz.bartos.smarthome.domain.Role;
 import cz.bartos.smarthome.domain.User;
 
 import javax.inject.Named;
@@ -22,10 +21,7 @@ import java.util.Map;
 @Singleton
 public class AuthorizationBean implements Serializable {
 
-    public static final Map<String, Role> accessMap;
-
     static {
-        accessMap = new HashMap<>();
         try {
             Path path = Paths.get("");
             ByteBuffer buffer = ByteBuffer.allocate((int) Files.size(path));

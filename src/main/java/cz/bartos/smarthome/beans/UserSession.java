@@ -1,6 +1,5 @@
 package cz.bartos.smarthome.beans;
 
-import cz.bartos.smarthome.domain.Role;
 import cz.bartos.smarthome.domain.User;
 
 import javax.enterprise.context.SessionScoped;

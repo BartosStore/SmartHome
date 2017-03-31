@@ -13,11 +13,22 @@ import java.sql.Timestamp;
  */
 public class Authenticator {
     
-    String name;
-    String pass;
-    String token;
-    Timestamp timestamp;
+    private String status;
+    private String name;
+    private String pass;
+    private String token;
+    private Timestamp timestamp;
+    private long afk;
+    private String snackbar;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     public String getName() {
         return name;
     }
@@ -49,4 +60,22 @@ public class Authenticator {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
+
+    public String getSnackbar() {
+        return snackbar;
+    }
+
+    public void setSnackbar(String snackbar) {
+        this.snackbar = snackbar;
+    }
+
+    public long getAfk() {
+        return afk;
+    }
+
+    public void setAfk(long afk) {
+        this.afk = afk;
+    }
+
+    
 }
