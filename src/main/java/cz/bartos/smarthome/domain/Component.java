@@ -10,11 +10,21 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author mirek
  */
+@NamedQueries(
+        {
+            @NamedQuery(name = "findAllComponents", query = "SELECT c FROM Component c"),
+            @NamedQuery(name = "findByScreen", query = "SELECT c FROM Component c WHERE c.screen = :screen"),
+            @NamedQuery(name = "findComponentById", query = "SELECT c FROM Component c WHERE c.id = :id")
+        }
+)
 @Entity
 public class Component implements Serializable {
 
@@ -24,10 +34,21 @@ public class Component implements Serializable {
     private String cName;
     private String description;
     private String cType;           //button/switcher/slider
-    private int value;
+    private float value;
     private boolean dashboard;      //true-value se muze zobrazit v DaBo
     private Timestamp lastWriting;  //posledni zapis hodnoty
-    private Long fk_screen;
+    //private Long fk_screen;
+    
+    @ManyToOne
+    private Screen screen;
+
+    public Screen getScreen() {
+        return screen;
+    }
+
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
 
     public Long getId() {
         return id;
@@ -61,11 +82,11 @@ public class Component implements Serializable {
         this.cType = cType;
     }
 
-    public int getValue() {
+    public float getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(float value) {
         this.value = value;
     }
 
@@ -83,14 +104,6 @@ public class Component implements Serializable {
 
     public void setLastWriting(Timestamp lastWriting) {
         this.lastWriting = lastWriting;
-    }
-
-    public Long getFk_screen() {
-        return fk_screen;
-    }
-
-    public void setFk_screen(Long fk_screen) {
-        this.fk_screen = fk_screen;
     }
 
     @Override

@@ -11,7 +11,6 @@ import cz.bartos.smarthome.dao.UserScreenDao;
 import cz.bartos.smarthome.domain.Screen;
 import cz.bartos.smarthome.domain.User;
 import cz.bartos.smarthome.domain.UserScreen;
-import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

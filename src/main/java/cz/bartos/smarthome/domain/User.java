@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
         {
             @NamedQuery(name = "findUserByLoginQuery", query = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password"),
             @NamedQuery(name = "findUserByTokenQuery", query = "SELECT u FROM User u WHERE u.token = :token"),
-            @NamedQuery(name = "findAll", query = "SELECT u FROM User u")
+            @NamedQuery(name = "findAllUsers", query = "SELECT u FROM User u")
         }
 )
 @Entity

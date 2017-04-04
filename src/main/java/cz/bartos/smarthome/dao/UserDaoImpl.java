@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findAll() {
-        Query query = entityManager.createNamedQuery("findAll");
+        Query query = entityManager.createNamedQuery("findAllUsers");
 
         return query.getResultList();
     }
