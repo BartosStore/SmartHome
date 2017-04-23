@@ -42,6 +42,7 @@ public class SldrSquare {
         component.setValue(input.value);
         componentDao.update(component);
         
+        squarizator = new Squarizator();
         squarizator.setStatus("OK");
         squarizator.setSnackbar("Akce byla zaznamenána.");
 

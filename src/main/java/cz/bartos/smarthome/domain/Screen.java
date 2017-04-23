@@ -33,6 +33,7 @@ public class Screen implements Serializable {
     private Long id;
     private String sName;
     private String url;
+    private String icon;
     
     @OneToMany(cascade = CascadeType.MERGE)
     private List<UserScreen> userScreens;
@@ -61,6 +62,14 @@ public class Screen implements Serializable {
         this.url = url;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+    
     public List<UserScreen> getUserScreens() {
         return userScreens;
     }

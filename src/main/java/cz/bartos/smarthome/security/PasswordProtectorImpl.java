@@ -11,6 +11,7 @@ import static java.security.MessageDigest.getInstance;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Singleton;
 
 /**
@@ -18,7 +19,7 @@ import javax.inject.Singleton;
  * @author Míra
  */
 /* GNU licence */
-@Singleton
+@Stateless 
 public class PasswordProtectorImpl implements PasswordProtector {
 
     private static MessageDigest messageDigest = null;

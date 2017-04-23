@@ -9,8 +9,17 @@ import cz.bartos.smarthome.dao.ScreenDao;
 import cz.bartos.smarthome.dao.UserDao;
 import cz.bartos.smarthome.dao.UserScreenDao;
 import cz.bartos.smarthome.domain.Screen;
+import cz.bartos.smarthome.domain.Squarizator;
 import cz.bartos.smarthome.domain.User;
 import cz.bartos.smarthome.domain.UserScreen;
+import cz.bartos.smarthome.security.PasswordProtector;
+import cz.bartos.smarthome.security.PasswordProtectorImpl;
+import static java.lang.Long.toHexString;
+import java.security.MessageDigest;
+import static java.security.MessageDigest.getInstance;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -27,45 +36,22 @@ import javax.ws.rs.core.Response;
 public class dbtest {
     
     @Inject
-    private UserDao userDao;
+    private PasswordProtector passwordProtector;
     
-    @Inject
-    private ScreenDao screenDao;
-    
-    @Inject
-    private UserScreenDao userScreenDao;
-    
-    private User user;
-    private Screen screen;
-    private UserScreen userScreen;
+    private MessageDigest messageDigest;
+    private String password;
+    private String salt;
+    private Squarizator squarizator;
     
     @GET
     public Response get() {
-        user = userDao.findByLogin("admin", "admin");
+        password = "password";
+        salt = "salt";
         
-        if (user == null) {
-            System.out.println("USER IS NULL"); 
-        }
+        squarizator = new Squarizator();
+        squarizator.setSnackbar(passwordProtector.hashPassword(password, salt));
         
-        screen = screenDao.findByUrl("/heating");
-        
-        if (screen == null) {
-            System.out.println("SCREEN IS NULL"); 
-        }
-        
-        System.out.println("USER and SCREEN OK");
-        
-        /*
-        userScreen = new UserScreen();
-        userScreen.setUser(user);
-        userScreen.setScreen(screen);
-        */
-        
-        userScreen = userScreenDao.findByUserAndScreen(user, screen);
-        
-        System.out.println("USERSCREEN OK");
-
-        return Response
-                .ok(userScreen, MediaType.APPLICATION_JSON).build();
+        return Response.ok(squarizator, MediaType.APPLICATION_JSON).build();
     }
+    
 }

@@ -32,16 +32,20 @@ public class SwtchSquare {
     
     private Component component;
     private Squarizator squarizator;
+    private int value;
     
     @POST
     public Response post(final SquareBean input) {
         System.out.println("SwtchSquare -> id: " + input.id + "\nvalue: " + input.value);
         
         component = componentDao.findComponentById(input.id);
+        System.out.println("component" + component.getcName());
         component.setLastWriting(new Timestamp(System.currentTimeMillis()));
+        
         component.setValue(input.value);
         componentDao.update(component);
         
+        squarizator = new Squarizator();
         squarizator.setStatus("OK");
         squarizator.setSnackbar("Akce byla zaznamenána.");
 

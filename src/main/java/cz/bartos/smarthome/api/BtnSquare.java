@@ -38,11 +38,17 @@ public class BtnSquare {
         System.out.println("BtnSquare -> id: " + input.id + "\nvalue: " + input.value);
         
         component = componentDao.findComponentById(input.id);
-        component.setLastWriting(new Timestamp(System.currentTimeMillis()));
-        componentDao.update(component);
+        squarizator = new Squarizator();
         
-        squarizator.setStatus("OK");
-        squarizator.setSnackbar("Akce byla zaznamenána.");
+        if (component == null) {
+            squarizator.setStatus("KO");
+            squarizator.setSnackbar("Nebyla nalezena komponenta podle ID.");
+        } else {
+            component.setLastWriting(new Timestamp(System.currentTimeMillis()));
+            componentDao.update(component);
+            squarizator.setStatus("OK");
+            squarizator.setSnackbar("Akce byla zaznamenána.");
+        }
 
         return Response.ok(squarizator, MediaType.APPLICATION_JSON).build();
     }

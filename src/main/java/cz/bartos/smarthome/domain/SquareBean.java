@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class SquareBean {
+    @XmlElement public String uuid;
     @XmlElement public Long id;
-    @XmlElement public float value;    
+    @XmlElement public int value;    
 }

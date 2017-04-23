@@ -34,7 +34,7 @@ public class Component implements Serializable {
     private String cName;
     private String description;
     private String cType;           //button/switcher/slider
-    private float value;
+    private int value;
     private boolean dashboard;      //true-value se muze zobrazit v DaBo
     private Timestamp lastWriting;  //posledni zapis hodnoty
     //private Long fk_screen;
@@ -82,11 +82,11 @@ public class Component implements Serializable {
         this.cType = cType;
     }
 
-    public float getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(float value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
