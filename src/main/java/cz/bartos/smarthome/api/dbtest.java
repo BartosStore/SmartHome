@@ -45,8 +45,8 @@ public class dbtest {
     
     @GET
     public Response get() {
-        password = "password";
-        salt = "salt";
+        password = "admin";
+        salt = "kryton";
         
         squarizator = new Squarizator();
         squarizator.setSnackbar(passwordProtector.hashPassword(password, salt));

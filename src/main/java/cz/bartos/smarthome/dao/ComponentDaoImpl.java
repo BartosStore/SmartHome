@@ -59,5 +59,7 @@ public class ComponentDaoImpl implements ComponentDao {
     public void update(Component component) {
         entityManager.merge(component);
     }
+
+
     
 }

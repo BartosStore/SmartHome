@@ -9,6 +9,7 @@ import cz.bartos.smarthome.dao.UserDao;
 import cz.bartos.smarthome.domain.Authenticator;
 import cz.bartos.smarthome.domain.JaxBean;
 import cz.bartos.smarthome.domain.User;
+import cz.bartos.smarthome.security.PasswordProtector;
 import java.sql.Timestamp;
 import java.util.UUID;
 import javax.inject.Inject;
@@ -28,18 +29,25 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class Login {
     
+    private static final String SALT = "kryton";
+    
     @Inject
     UserDao userDao;
     
+    @Inject
+    private PasswordProtector passwordProtector;
+    
     private Authenticator authenticator;
     private User user;
+    private String hashedPassword;
     
     @POST
     public Response post(final JaxBean input) {
         System.out.println("login: " + input.name + "\npass: " + input.pass);
         
         authenticator = new Authenticator();
-        user = userDao.findByLogin(input.name, input.pass);
+        hashedPassword = passwordProtector.hashPassword(input.pass, SALT);
+        user = userDao.findByLogin(input.name, hashedPassword);
         
         if (user != null) {
             String uuid = UUID.randomUUID().toString().replace("-", "");

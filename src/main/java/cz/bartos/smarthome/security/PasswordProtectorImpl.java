@@ -12,19 +12,17 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.inject.Singleton;
 
 /**
  *
  * @author Míra
  */
-/* GNU licence */
 @Stateless 
 public class PasswordProtectorImpl implements PasswordProtector {
 
     private static MessageDigest messageDigest = null;
     private static final int MIN_PASSWORD_LENGHT = 4;
-    private static final String MIN_PASSWORD_LENGHT_WARNING = "Hashed password is too short.";
+    private static final String MIN_PASSWORD_LENGHT_WARNING = "Heslo je příliš krátké.";
 
     static {
         try {

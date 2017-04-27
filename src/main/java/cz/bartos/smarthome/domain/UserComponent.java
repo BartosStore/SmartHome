@@ -1,29 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.bartos.smarthome.domain;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author mirek
  */
+@NamedQueries(
+        {
+            @NamedQuery(name = "findAllUsercomponents", query = "SELECT u FROM UserComponent u")
+        }
+)
 @Entity
 public class UserComponent implements Serializable {
-
+    
     @Id
     @GeneratedValue
     private Long id;
-    private Long fk_user;
-    private Long fk_component;
+    @ManyToOne
+    private User user;
+    @ManyToOne
+    private Component component;
     private boolean blocked;
-    
+
     public Long getId() {
         return id;
     }
@@ -32,20 +37,20 @@ public class UserComponent implements Serializable {
         this.id = id;
     }
 
-    public Long getFk_user() {
-        return fk_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setFk_user(Long fk_user) {
-        this.fk_user = fk_user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getFk_component() {
-        return fk_component;
+    public Component getComponent() {
+        return component;
     }
 
-    public void setFk_component(Long fk_component) {
-        this.fk_component = fk_component;
+    public void setComponent(Component component) {
+        this.component = component;
     }
 
     public boolean isBlocked() {
@@ -55,7 +60,7 @@ public class UserComponent implements Serializable {
     public void setBlocked(boolean blocked) {
         this.blocked = blocked;
     }
-
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set

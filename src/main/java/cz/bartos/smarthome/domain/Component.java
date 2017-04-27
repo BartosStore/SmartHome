@@ -7,12 +7,15 @@ package cz.bartos.smarthome.domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -37,10 +40,12 @@ public class Component implements Serializable {
     private int value;
     private boolean dashboard;      //true-value se muze zobrazit v DaBo
     private Timestamp lastWriting;  //posledni zapis hodnoty
-    //private Long fk_screen;
     
     @ManyToOne
     private Screen screen;
+    
+    @OneToMany(cascade = CascadeType.MERGE)
+    private List<UserComponent> userComponents;
 
     public Screen getScreen() {
         return screen;
@@ -104,6 +109,14 @@ public class Component implements Serializable {
 
     public void setLastWriting(Timestamp lastWriting) {
         this.lastWriting = lastWriting;
+    }
+
+    public List<UserComponent> getUserComponents() {
+        return userComponents;
+    }
+
+    public void setUserComponents(List<UserComponent> userComponents) {
+        this.userComponents = userComponents;
     }
 
     @Override

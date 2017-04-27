@@ -7,9 +7,11 @@ package cz.bartos.smarthome.api;
 
 import cz.bartos.smarthome.dao.ComponentDao;
 import cz.bartos.smarthome.dao.ScreenDao;
+import cz.bartos.smarthome.dao.UserComponentDao;
 import cz.bartos.smarthome.domain.AuthorizeBean;
 import cz.bartos.smarthome.domain.Component;
 import cz.bartos.smarthome.domain.Screen;
+import cz.bartos.smarthome.domain.UserComponent;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -34,6 +36,9 @@ public class Components {
     @Inject
     private ScreenDao screenDao;
     
+    @Inject
+    private UserComponentDao userComponentDao;
+    
     private Screen screen;
     
     @POST
@@ -49,6 +54,8 @@ public class Components {
         } else {
             System.out.println("Component no1: " + components.get(0).getcName());
         }
+        
+        //List<UserComponent> userComponents = userComponentDao.findAll();
         
         return Response.ok(components, MediaType.APPLICATION_JSON).build();
     }
